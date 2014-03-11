@@ -4,6 +4,10 @@
 	<head>
         <meta charset="UTF-8">
         <title>Rotten Tomatoes</title>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
         <script src="../js/app.js"></script>
@@ -14,11 +18,30 @@
 <body>
 	<div ng-app="movieApp">
 		<div ng-controller="movieController">
-			Search for a movie:
-			<input placeholder="Movie Title" ng-model="title">
-			<button ng-click="search();">Search</button>
-
+				<div class="jumbotron">
+                <center><h1>Movies</h1></center>
+<center>
+					<h3>Search for a Movie:</h3>
+					<input type="text" ng-model="title">
+                  <button ng-click="search();">Search</button>
+                  </center>
+				</div>
+                <center>
+        <div class="allmovies" ng-repeat="movies in result"| filter:searchText">
+				<div class="movies" ng-repeat="movie in result">
+					<img ng-src="{{ movie.posters.profile }}" />
+					<h1>
+						{{ movie.title }}
+					</h1>
+					<h5>
+						Year: {{ movie.year }}
+					</h5>
+					<p> 
+						Rated: {{ movie.mpaa_rating }}
+					</p>
+ 					<hr>
         </div>
+        </center>
     </div>
 </body>
 </html>
